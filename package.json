@@ -1,0 +1,50 @@
+{
+	"name"    : "gulp-polyfiller",
+	"version" : "0.0.1",
+	"author"  : "Abashkin Alexander <monolithed@gmail.com>",
+	"homepage": "https://github.com/Polyfiller/gulp-polyfiller.git",
+
+	"description": "A polyfill combinator",
+
+	"keywords": [ "gulp", "polyfill", "es5", "es6", "es7", "ecmascript", "harmony", "strawman" ],
+
+	"main": "tasks/polyfiller.js",
+
+	"man": "README.md",
+
+	"engines": {
+		"node": ">=0.10.28"
+	},
+
+	"repository": {
+		"type": "git",
+		"url" :  "https://github.com/Polyfiller/gulp-polyfiller.git"
+	},
+
+	"bugs": {
+		"url": "https://github.com/Polyfiller/gulp-polyfiller/issues"
+	},
+
+	"scripts": {
+		"test": "gulp test"
+	},
+
+	"dependencies": {
+		"gulp"      : "^3.8.11",
+		"del"       : "^1.1.1",
+		"through2"  : "^0.6.5",
+		"gulp-util" : "^3.0.4",
+		"polyfiller": "^0.0.9"
+	},
+
+	"devDependencies": {
+		"gulp-nodeunit": "^0.0.5"
+	},
+
+	"licenses": [
+		{
+			"type": "MIT",
+			"url" : "http://www.opensource.org/licenses/mit-license.php"
+		}
+	]
+}
