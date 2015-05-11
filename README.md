@@ -2,7 +2,6 @@
 
 [![npm version badge](https://img.shields.io/npm/v/gulp-polyfiller.svg)](https://www.npmjs.org/package/gulp-polyfiller)
 [![Build Status](https://travis-ci.org/Polyfiller/gulp-polyfiller.png)](https://travis-ci.org/Polyfiller/gulp-polyfiller)
-[![Donate](https://img.shields.io/gratipay/polyfiller.corp.svg)](https://gratipay.com/polyfiller.corp)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.txt)
 
 
