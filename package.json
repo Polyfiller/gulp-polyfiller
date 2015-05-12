@@ -1,53 +1,62 @@
 {
-  "name": "gulp-polyfiller",
-  "version": "0.0.1",
-  "author": "Sergey Kamardin <gobwas@gmail.com>",
-  "homepage": "https://github.com/Polyfiller/gulp-polyfiller.git",
-  "description": "A polyfill combinator",
-  "keywords": [
-    "gulp",
-    "gulpplugin",
-    "polyfill",
-    "es5",
-    "es6",
-    "es7",
-    "ecmascript",
-    "harmony",
-    "strawman"
-  ],
-  "main": "index.js",
-  "man": "README.md",
-  "engines": {
-    "node": ">=0.10.28"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Polyfiller/gulp-polyfiller.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Polyfiller/gulp-polyfiller/issues"
-  },
-  "scripts": {
-    "test": "mocha ./test"
-  },
-  "dependencies": {
-    "gulp-util": "^3.0.4",
-    "polyfiller": "0.0.9",
-    "vinyl": "^0.4.6"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://www.opensource.org/licenses/mit-license.php"
-    }
-  ],
-  "devDependencies": {
-    "chai": "^2.3.0",
-    "chance": "^0.7.4",
-    "lodash": "^3.8.0",
-    "mocha": "^2.2.4",
-    "proxyquire": "^1.4.0",
-    "sinon": "^1.14.1",
-    "through2": "^0.6.5"
-  }
+	"name"       : "gulp-polyfiller",
+	"version"    : "0.0.1",
+	"author"     : "Sergey Kamardin <gobwas@gmail.com>",
+	"homepage"   : "https://github.com/Polyfiller/gulp-polyfiller.git",
+	"description": "A polyfill combinator",
+
+	"keywords": [
+		"gulp",
+		"gulpplugin",
+		"polyfill",
+		"es5",
+		"es6",
+		"es7",
+		"ecmascript",
+		"harmony",
+		"strawman"
+	],
+
+	"main": "index.js",
+	"man" : "README.md",
+
+	"engines": {
+		"node": ">=0.10.28"
+	},
+
+	"repository": {
+		"type": "git",
+		"url" : "https://github.com/Polyfiller/gulp-polyfiller.git"
+	},
+
+	"bugs": {
+		"url": "https://github.com/Polyfiller/gulp-polyfiller/issues"
+	},
+
+	"scripts": {
+		"test": "mocha ./tests"
+	},
+
+	"dependencies": {
+		"gulp-util" : "^3.0.4",
+		"winston"   : "^1.0.0",
+		"polyfiller": "^0.0.9",
+		"vinyl"     : "^0.4.6"
+	},
+
+	"licenses": [
+		{
+			"type": "MIT",
+			"url" : "http://www.opensource.org/licenses/mit-license.php"
+		}
+	],
+
+	"devDependencies": {
+		"chai"      : "^2.3.0",
+		"chance"    : "^0.7.4",
+		"mocha"     : "^2.2.4",
+		"proxyquire": "^1.4.0",
+		"sinon"     : "^1.14.1",
+		"through2"  : "^0.6.5"
+	}
 }

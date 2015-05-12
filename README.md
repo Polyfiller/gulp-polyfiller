@@ -9,7 +9,7 @@
 
 
 ## Getting Started
-If you haven't used [Gulp](http://gulpjs.com/) before, be sure to check out the [Getting Started](https://github.com/gulpjs/gulp/blob/master/docs/README.md) guide, as it explains how to create a `gulpfile` as well as install and use Gulp plugins. Once you're familiar with that process, you may install this plugin with this command:
+If you haven't used [Gulp](ht   tp://gulpjs.com/) before, be sure to check out the [Getting Started](https://github.com/gulpjs/gulp/blob/master/docs/README.md) guide, as it explains how to create a `gulpfile` as well as install and use Gulp plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install --save-dev gulp-polyfiller
@@ -63,13 +63,36 @@ Type: `Object`.
 
 Options for bundle process. All of options are the options for the [Polyfiller](https://github.com/Polyfiller/polyfiller) itself, except these ones:
 
-+ **options.path** `string` changes the stream's output `File.path` property.
 
+#### path
+
+Type: `string` <br />
+
+Changes the stream's output `File.path` property
+
+
+#### process
+
+Type: `Function(Object:feature, String:name, Array:features)` <br />
+
+This option as an advanced way to control the file contents that are created.
+
+```js
+....
+{
+	process: function (feature, name, features) {
+		return feature.source;
+	}
+}
+....
+```
+
+For more details see the [Polyfiller](https://github.com/Polyfiller/polyfiller) documentation
 
 ### Tests
 
 ```
-npm test
+npm install && npm test
 ```
 
 
