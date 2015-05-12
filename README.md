@@ -60,7 +60,7 @@ Type: `Array`
 
 List of features you want to bundle.
 
-#### Options
+#### options
 
 Type: `Object`.
 
