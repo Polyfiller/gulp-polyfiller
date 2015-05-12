@@ -1,34 +1,28 @@
-var Polyfiller  = require("polyfiller"),
-	gutil       = require("gulp-util"),
-	File        = require("vinyl"),
-	stream      = require("stream"),
-	Readable    = stream.Readable,
-	Transform   = stream.Transform,
-	PLUGIN_NAME = "gulp-polyfiller";
+var Polyfiller = require('polyfiller'),
+	gutil      = require('gulp-util'),
+	File       = require('vinyl'),
+	stream     = require('stream'),
+	Readable   = stream.Readable,
+	Transform  = stream.Transform,
+	log        = require('./utils/logger');
 
-function log() {
-    var args, sig;
+var PLUGIN_NAME = 'gulp-polyfiller';
 
-    args = Array.prototype.slice.call(arguments);
-    sig = '[' + PLUGIN_NAME + ']';
-    args.unshift(sig);
+log.name = PLUGIN_NAME
 
-    gutil.log.apply(gutil, args);
-};
-
-function bundle(features, options) {
+function bundle (features, options) {
 	var polyfiller, source, processor;
 
 	options = options || {};
-	options.path = options.path || "polyfills.js";
+	options.path = options.path || 'polyfills.js';
 
 	if (processor = options.process) {
-		source = "";
+		source = '';
 	}
 
 	polyfiller = new Polyfiller(options);
 
-	polyfills = polyfiller.find(features, function(feature, name) {
+	polyfills = polyfiller.find(features, function (feature, name) {
 		if (processor) {
 			source += processor.apply(this, arguments);
 		}
@@ -36,54 +30,51 @@ function bundle(features, options) {
 
 	if (processor) {
 		source = polyfiller.options.wrapper(source);
-	} else {
+	}
+	else {
 		source = polyfiller.pack(polyfills);
 	}
 
-	log("Successfully compiled polyfills");
+	log.info('File "' + options.path + '" created.');
 
 	return new File({
-		path: options.path,
+		path    : options.path,
 		contents: new Buffer(source)
 	});
 }
 
-module.exports = function(features, options) {
-	var stream;
+module.exports = function (features, options) {
+	var stream = new Transform({ objectMode: true });
 
-	stream = new Transform({ objectMode: true });
-	
-	stream._transform = function(file, enc, done) {
-		// bypass anything
+	stream._transform = function (file, enc, done) {
 		this.push(file);
 		done();
 	};
 
-	stream._flush = function(done) {
-		// push to stream polyfills
+	stream._flush = function (done) {
 		try {
 			this.push(bundle(features, options));
 			done();
-		} catch (err) {
-			done(err);
+		}
+		catch (error) {
+			done(error);
 		}
 	};
 
 	return stream;
 };
 
-module.exports.bundle = function(features, options) {
-	var stream;
+module.exports.bundle = function (features, options) {
+	var stream = new Readable({ objectMode: true });
 
-	stream = new Readable({ objectMode: true });
-	stream._read = function(size) {
+	stream._read = function (size) {
 		try {
 			this.push(bundle(features, options));
-		} catch (err) {
-			this.emit("error", new gutil.PluginError(PLUGIN_NAME, err));
 		}
-		
-		// end anyway	
+		catch (error) {
+			this.emit('error', new gutil.PluginError(PLUGIN_NAME, error));
+		}
+
 		this.push(null);
 	};
 
