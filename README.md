@@ -23,101 +23,53 @@ var gulp = require('gulp');
 var polyfiller = require('gulp-polyfiller');
 
 gulp.task('default', function () {
-	gulp.dest('polyfills.js')
-		.pipe(polyfiller({ features: ['Promise', 'Fetch'] }))
+	polyfiller
+		.bundle(['Promise', 'Fetch'])
+		.pipe(gulp.dest('polyfills.js'));
 });
 ```
 
-
-### Options
-
-#### catalog
-Type: `Array` <br />
-Default: `[trunk/catalog]`
-
-Have custom polyfills? Add paths to their location here.
+Or:
 
 ```js
-var path = require('path');
+var gulp = require('gulp');
+var polyfiller = require('gulp-polyfiller');
 
-....
-{
-	catalog: [ 
-		path.resolve(__dirname, '../your/catalog') 
-	]
-}
-....
+gulp.task('default', function () {
+	gulp.src("*.js")
+		// push polyfills file after all scripts
+		.pipe(polyfiller(['Promise', 'Fetch']))
+		// run then any tasks on your scripts
+		.pipe(concat())
+		.pipe(gulp.dest('bundle.js'));
+});
+
 ```
 
-#### exclude
 
-Type: `Array` <br />
-Default: `[]`
+### API
 
-Some polyfills have dependencies that you can exclude here.
+#### polyfiller(features, [options]);
 
-```js
-....
-{
-	exclude: ['setImmediate']
-}
-....
-```
+##### features
 
-#### verbose
+Type: `Array`
 
-Type: `Boolean` <br />
-Default: `false`
+List of features you want to bundle.
 
-Verbose mode is an option that provides additional details as to what the package is doing.
+##### options
 
-```js
-....
-{
-	verbose: true
-}
-....
-```
+Type: `Object`.
 
-#### wrapper
+Options for bundle process. All of options are the options for the [Polyfiller](https://github.com/Polyfiller/polyfiller) itself, except these ones:
 
-Type: `Function` <br />
-Default: `None`
++ **options.path** `string` changes the stream's output `File.path` property.
 
-A custom wrapper for your environment
-
-```js
-....
-{
-	wrapper: function (source) {
-		return ';(function () {' + source + '}.call(self));'
-	}
-}
-....
-```
-
-#### process
-
-Type: `Function(Object:feature, String:name, Array:features)` <br />
-
-This option as an advanced way to control the file contents that are created.
-
-```js
-....
-{
-	process: function (feature, name, features) {
-		return feature.source;
-	}
-}
-....
-```
-
-For more details see the [Polyfiller](https://github.com/Polyfiller/polyfiller) documentation
 
 ### Tests
 
 ```
-gulp test
+npm test
 ```
 
 
@@ -125,4 +77,4 @@ gulp test
 
 MIT
 
-Task submitted by [Alexander Abashkin](https://github.com/monolithed)
+Plugin submitted by [Sergey Kamardin](https://github.com/gobwas)
