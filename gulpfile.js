@@ -4,5 +4,5 @@ var polyfiller = require('../gulp-polyfiller');
 gulp.task('default', function () {
 	polyfiller
 		.bundle(['Promise', 'Fetch'])
-		.pipe(gulp.dest('polyfills'));
+		.pipe(gulp.dest('cache'));
 });
